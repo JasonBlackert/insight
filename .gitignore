@@ -1,5 +1,6 @@
 .pybuild
-insight
+insight/debian/insight
+insight/debian/files
 *.debhelper
 *-stamp
 *.debhelper
