@@ -2,8 +2,8 @@
 MQTT Service to Provide 'insight' on Pi's doings
 
 ## Local Topics
-insight/$SERIAL/status
-insight/$SERIAL/cmd
+`insight/$SERIAL/status`
+`insight/$SERIAL/cmd`
 
 ### Step 0.0 Grab Serial of Device
 `cat /sys/firmware/devicetree/base/serial-number`
