@@ -1,0 +1,10 @@
+[Unit]
+Description=MQTT Service to Provide 'insight' on Pi's doings
+Requires=mosquitto.service
+
+[Service]
+ExecStart=/usr/bin/insight
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

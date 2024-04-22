@@ -1,0 +1,13 @@
+Source: insight
+Section: python
+Priority: optional
+Maintainer: Jason Blackert <jason.blackert@gmail.com
+Build-Depends: debhelper (>= 11), dh-python, python3-all, pybuild-plugin-pyproject, python3-poetry-core
+Standards-Version: 4.1.3
+Homepage: https://github.com/JasonBlackert/insight/
+X-Python3-Version: >= 3.2
+
+Package: insight
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}
+Description: MQTT Service to Provide 'insight' on Pi's doings
