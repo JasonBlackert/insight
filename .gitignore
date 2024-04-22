@@ -1,0 +1,8 @@
+.pybuild
+insight
+*.debhelper
+*-stamp
+*.debhelper
+*.substvars
+*_amd64.*
+*.deb
