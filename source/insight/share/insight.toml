@@ -3,7 +3,7 @@ log_level = 'INFO'
 description = "MQTT Service to Provide 'insight' on $USER's doings"
 
 [time]
-sleep = 300
+sleep = 30
 
 [mqtt]
 host = '10.0.0.18'
