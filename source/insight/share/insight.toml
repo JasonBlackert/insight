@@ -1,7 +1,11 @@
-[drums-mqtt]
+[insight]
 log_level = 'INFO'
+description = "MQTT Service to Provide 'insight' on $USER's doings"
+
+[time]
+sleep = 300
 
 [mqtt]
 host = '10.0.0.18'
 port =  1883
-topic = "Camera/capture"
+topic = "Insight"

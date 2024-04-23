@@ -1,6 +1,5 @@
 import itertools
 import logging
-from collections import deque
 
 import paho.mqtt.client as mqtt
 
@@ -19,15 +18,13 @@ class MqttBroker:
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
 
-        self.queue = deque()
-
     def on_connect(self, client, userdata, flags, rc):
         log.info("client connected with result code " + str(rc))
 
     def on_message(self, client, userdata, msg):
         if msg.topic != MQTT_TOPIC:
             return
-        print(f"{msg.topic}")
+        log.info(f"{msg.topic}")
 
     def start(self):
         self.client.connect(config["mqtt"]["host"], config["mqtt"]["port"])
@@ -36,12 +33,23 @@ class MqttBroker:
     def publish(self, *args, **kwargs):
         return getattr(self.client, "publish")(*args, **kwargs)
 
-    def multicast(self, cmds: list[str], msg="Multicasting") -> None:
+    def multicast(
+        self,
+        cmds: list[str],
+        topic: str = "cmd",
+        msg: str = "Multicasting",
+    ) -> None:
         log.info(f"{msg}: {cmds}")
         for cmd in cmds:
-            self.client.publish("Pulse/cmd", cmd)
+            self.client.publish("Insight/{topic}", cmd)
 
-    def unicast(self, cmds: list[str], macs: list[str], msg="Unicasting") -> None:
-        log.info(f"{msg}: {cmds} to {macs}")
-        for cmd, mac in itertools.product(cmds, macs):
-            self.client.publish(f"Pulse/{mac}/cmd", cmd)
+    def unicast(
+        self,
+        cmds: list[str],
+        serials: list[str],
+        topic: str = "cmd",
+        msg="Unicasting",
+    ) -> None:
+        log.info(f"{msg}: {cmds} to {serials}")
+        for cmd, serial in itertools.product(cmds, serials):
+            self.client.publish(f"Insight/{serial}/{topic}", cmd)
